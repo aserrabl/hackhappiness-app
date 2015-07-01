@@ -1,4 +1,4 @@
-angular.module('app.controllers', ['uiGmapgoogle-maps'])
+angular.module('app.controllers', ['uiGmapgoogle-maps','ngDraggable'])
 
 .controller('MapCtrl', function($scope, GeoService, HappinessesService, uiGmapIsReady) {
   // el mapa está preparado

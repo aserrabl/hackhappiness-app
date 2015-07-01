@@ -8222,3 +8222,9 @@ ion-item.item:not(.item-divider).item-avatar img {
     .aboutProfile ion-item.item h2 {
       padding: 5px;
       text-align: center; }
+
+.hashtagText {
+  position: absolute;
+  top: 70%;
+  width: 50%;
+  left: 25%; }

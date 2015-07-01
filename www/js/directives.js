@@ -20,6 +20,12 @@ angular.module('app.directives', ['app.services'])
                       break;
               }
 
+    console.log("addHappiness");
+
+
+              if(typeof $scope.hashtag == 'undefined') $scope.happinessData.message = "Cireres";
+              console.log($scope.hashtag);
+
               GeoService.getCurrentPosition(function(position){
                   if(position.coords)
                   {
@@ -32,6 +38,7 @@ angular.module('app.directives', ['app.services'])
                               var splitedGoogleCity = googleCity.split(',').reverse().splice(0,2);
                               $scope.happinessData.city = splitedGoogleCity.join();
 
+                              console.log($scope.happinessData);
                               HappinessesService.post($scope.happinessData)
                                   .success(function(){
                                       $scope.initHappinesData();
@@ -49,24 +56,65 @@ angular.module('app.directives', ['app.services'])
           };
 
           var interval;
+          $scope.increase = true;
+
+          $scope.incr = function() {
+             $scope.increase = true;
+             console.log($scope.increase);
+          }
+
+          $scope.decr = function(){
+            $scope.increase = false;
+            console.log($scope.increase);
+          }
+
           $scope.startHappiness = function()
           {
+              $scope.hashtag = "";
+              $scope.isPaused = false;
               _increaseHappinessLevel();
               interval = $interval(_increaseHappinessLevel, _increaseHappinessInterval);
+              console.log("startHappiness");
           };
+          $scope.pauseHappiness = function () {
+            $scope.isPaused = true;
+            $interval.cancel(interval);
+            console.log("pauseHappiness");
+          }
+          $scope.cancelHappiness = function(){
+            //RESET ALL
+            console.log('cancelled');
+           $scope.initHappinesData();
+           $scope.isHappinessLevelSet = false;
+           $scope.isPositionSended = false;
+           $scope.isPaused = false;
+
+          }
           $scope.stopHappiness = function()
           {
-              $interval.cancel(interval);
+              console.log("stopHappiness");
+              //$interval.cancel(interval);
               $scope.isHappinessLevelSet = true;
               $scope.addHappiness();
+              $scope.isPaused = false;
           };
 
           var _increaseHappinessInterval = 500;
           var _increaseHappinessLevel = function(){
-              if( $scope.happinessData.level < $scope.happinessRangeMax )
-              {
-                  $scope.happinessData.level++;
-              }
+
+          if( $scope.happinessData.level == $scope.happinessRangeMax || $scope.happinessData.level == 0) {
+            $scope.increase = !$scope.increase;
+          }
+            if ($scope.increase){
+                  if( $scope.happinessData.level < $scope.happinessRangeMax ){
+                      $scope.happinessData.level++;
+
+                  }
+                }else{
+                  if( $scope.happinessData.level > 0 ){
+                      $scope.happinessData.level--;
+                  }
+            }
           };
 
           var _setLocation = function(lat, lng)
