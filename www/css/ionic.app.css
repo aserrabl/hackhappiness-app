@@ -8224,7 +8224,17 @@ ion-item.item:not(.item-divider).item-avatar img {
       text-align: center; }
 
 .hashtagText {
-  position: absolute;
-  top: 70%;
+  position: fixed;
+  top: 65%;
   width: 50%;
-  left: 25%; }
+  left: 25%;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #262626; }
+
+.cancelArea {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 5em;
+  line-height: 50px;
+  z-index: 99; }

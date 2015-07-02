@@ -20,11 +20,7 @@ angular.module('app.directives', ['app.services'])
                       break;
               }
 
-    console.log("addHappiness");
-
-
-              if(typeof $scope.hashtag == 'undefined') $scope.happinessData.message = "Cireres";
-              console.log($scope.hashtag);
+              $scope.happinessData.message = $scope.hashtag;
 
               GeoService.getCurrentPosition(function(position){
                   if(position.coords)
@@ -58,16 +54,6 @@ angular.module('app.directives', ['app.services'])
           var interval;
           $scope.increase = true;
 
-          $scope.incr = function() {
-             $scope.increase = true;
-             console.log($scope.increase);
-          }
-
-          $scope.decr = function(){
-            $scope.increase = false;
-            console.log($scope.increase);
-          }
-
           $scope.startHappiness = function()
           {
               $scope.hashtag = "";
@@ -80,7 +66,7 @@ angular.module('app.directives', ['app.services'])
             $scope.isPaused = true;
             $interval.cancel(interval);
             console.log("pauseHappiness");
-          }
+          };
           $scope.cancelHappiness = function(){
             //RESET ALL
             console.log('cancelled');
@@ -89,7 +75,7 @@ angular.module('app.directives', ['app.services'])
            $scope.isPositionSended = false;
            $scope.isPaused = false;
 
-          }
+          };
           $scope.stopHappiness = function()
           {
               console.log("stopHappiness");
@@ -103,17 +89,17 @@ angular.module('app.directives', ['app.services'])
           var _increaseHappinessLevel = function(){
 
           if( $scope.happinessData.level == $scope.happinessRangeMax || $scope.happinessData.level == 0) {
-            $scope.increase = !$scope.increase;
+              $scope.increase = !$scope.increase;
           }
-            if ($scope.increase){
-                  if( $scope.happinessData.level < $scope.happinessRangeMax ){
-                      $scope.happinessData.level++;
 
-                  }
-                }else{
-                  if( $scope.happinessData.level > 0 ){
-                      $scope.happinessData.level--;
-                  }
+          if ($scope.increase){
+              if( $scope.happinessData.level < $scope.happinessRangeMax ){
+                  $scope.happinessData.level++;
+              }
+            }else{
+              if( $scope.happinessData.level > 0 ){
+                  $scope.happinessData.level--;
+              }
             }
           };
 
@@ -158,13 +144,13 @@ angular.module('app.directives', ['app.services'])
                   });
               }
           };
-          $scope.initHappinesData = function()
-          {
+          $scope.initHappinesData = function(){
               $scope.happinessData = {
                   level: 0,
                   message: ' ',
                   loc: []
               };
+
               $scope.allowGeolocale = false;
               $scope.geolocating = false;
               $scope.isHappinessLevelSet = false;
