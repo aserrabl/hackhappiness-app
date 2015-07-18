@@ -68,6 +68,7 @@ angular.module('app.directives', ['app.services'])
             console.log("pauseHappiness");
           };
           $scope.cancelHappiness = function(){
+
             //RESET ALL
             console.log('cancelled');
            $scope.initHappinesData();
@@ -147,7 +148,7 @@ angular.module('app.directives', ['app.services'])
           $scope.initHappinesData = function(){
               $scope.happinessData = {
                   level: 0,
-                  message: ' ',
+                  message: '',
                   loc: []
               };
 
