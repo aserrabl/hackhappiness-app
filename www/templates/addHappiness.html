@@ -1,13 +1,15 @@
-<div class="shape-map" ng-class="{'transparent':isPositionSended}">
-	    <button ng-drag="true" ng-show="!isPaused" type="button" class="button button-large iconGrow_{{happinessData.level}}"
-	            ng-class="{'iconGrow_5 active': isHappinessLevelSet, 'iconGrow_6 gone': isPositionSended}"
-	            on-touch="startHappiness()" on-release="pauseHappiness()">
-	        <span>{{buttonMSG}}</span>
-	        <i class=" icon ion-happy-outline "></i>
-	    </button>
-	    <div ng-show="isPaused" class="buttonPausedBlock" >
-			<button ng-click="stopHappiness()" >OK!</button>
-			<input ng-model="hashtag" class="hashtagText" type="text"></input>
-		</div>
-		<div class="cancelArea" id="cancelArea" ng-drop="true" ng-click="cancelHappiness()" ng-drop-success="cancelHappiness()">X</div>
+<div class="shape-map" ng-class="{'transparent':isPositionSended}" ng-if="obj.allowClone !== false">
+    <button ng-show="!isPaused" type="button" class="button button-large iconGrow_{{happinessData.level}}"
+            ng-class="{'iconGrow_5 active': isHappinessLevelSet, 'iconGrow_6 gone': isPositionSended}"
+            on-touch="startHappiness()" on-release="pauseHappiness()" ng-drag="true" ng-if="obj.allowClone !== false">
+        <span>{{buttonMSG}}</span>
+        <i class=" icon ion-happy-outline "></i>
+    </button>
+    <div ng-show="isPaused" class="buttonPausedBlock">
+        <button ng-click="stopHappiness()">OK!</button>
+        <input ng-model="hashtag" class="hashtagText" type="text">
+    </div>
+    <div class="cancelArea" id="cancelArea" ng-click="cancelHappiness()"
+         ng-drop="true" ng-drop-success="cancelHappiness($data,$event)">
+    </div>
 </div>
