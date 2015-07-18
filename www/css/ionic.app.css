@@ -7925,11 +7925,6 @@ body {
   .shape-map.transparent {
     background: rgba(204, 204, 204, 0); }
   .shape-map button {
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    -ms-transition: all .3s;
-    -o-transition: all .3s;
-    transition: all .3s;
     width: 100px;
     height: 100px;
     border-radius: 100%;
@@ -8235,6 +8230,30 @@ ion-item.item:not(.item-divider).item-avatar img {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  font-size: 5em;
-  line-height: 50px;
+  background-image: url(../img/trash.png);
+  z-index: 99;
+  width: 40px;
+  height: 50px;
+  background-size: cover;
   z-index: 99; }
+
+[ng-drag], [ng-drag-clone] {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+[ng-drag-clone], [ng-drop] [ng-drag] {
+  cursor: move;
+  position: relative;
+  overflow: hidden; }
+
+[ng-drag] {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0; }

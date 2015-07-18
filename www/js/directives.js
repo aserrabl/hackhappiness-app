@@ -86,6 +86,9 @@ angular.module('app.directives', ['app.services'])
               $scope.isPaused = false;
           };
 
+          $scope.draggableObjects = [{name: 'one'}];
+
+
           var _increaseHappinessInterval = 500;
           var _increaseHappinessLevel = function(){
 
