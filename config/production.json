@@ -1,6 +1,9 @@
 {
   "dpdConfig": {
-    "collections": ["happinesses", "users"],
+    "collections": [
+      "happinesses",
+      "users"
+    ],
     "serverRoot": "http://app.hackhappiness.org/",
     "socketOptions": {
       "reconnectionDelayMax": 3000

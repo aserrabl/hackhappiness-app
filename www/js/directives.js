@@ -20,7 +20,10 @@ angular.module('app.directives', ['app.services'])
                       break;
               }
 
-              $scope.happinessData.message = $scope.hashtag;
+              /* NEEDS FIXING
+                  $scope.happinessData.message = $scope.hashtag;
+                  console.log($scope.hashtag);
+              */
 
               GeoService.getCurrentPosition(function(position){
                   if(position.coords)
@@ -54,13 +57,14 @@ angular.module('app.directives', ['app.services'])
           var interval;
           $scope.increase = true;
 
-          $scope.startHappiness = function()
-          {
+          $scope.startHappiness = function(){
+
+              console.log("startHappiness");
               $scope.hashtag = "";
               $scope.isPaused = false;
               _increaseHappinessLevel();
               interval = $interval(_increaseHappinessLevel, _increaseHappinessInterval);
-              console.log("startHappiness");
+
           };
           $scope.pauseHappiness = function () {
             $scope.isPaused = true;
@@ -75,6 +79,7 @@ angular.module('app.directives', ['app.services'])
            $scope.isHappinessLevelSet = false;
            $scope.isPositionSended = false;
            $scope.isPaused = false;
+              
 
           };
           $scope.stopHappiness = function()
@@ -86,13 +91,11 @@ angular.module('app.directives', ['app.services'])
               $scope.isPaused = false;
           };
 
-          $scope.draggableObjects = [{name: 'one'}];
-
-
           var _increaseHappinessInterval = 500;
           var _increaseHappinessLevel = function(){
 
-          if( $scope.happinessData.level == $scope.happinessRangeMax || $scope.happinessData.level == 0) {
+            //true -> incrementa
+          if( $scope.happinessData.level === $scope.happinessRangeMax || (!$scope.increase && $scope.happinessData.level === 1)) {
               $scope.increase = !$scope.increase;
           }
 
@@ -101,10 +104,11 @@ angular.module('app.directives', ['app.services'])
                   $scope.happinessData.level++;
               }
             }else{
-              if( $scope.happinessData.level > 0 ){
+              if( $scope.happinessData.level > 1 ){
                   $scope.happinessData.level--;
               }
             }
+              console.log($scope.happinessData.level);
           };
 
           var _setLocation = function(lat, lng)
@@ -151,7 +155,7 @@ angular.module('app.directives', ['app.services'])
           $scope.initHappinesData = function(){
               $scope.happinessData = {
                   level: 0,
-                  message: '',
+                  message: ' ',
                   loc: []
               };
 

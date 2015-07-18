@@ -5,9 +5,10 @@
         <span>{{buttonMSG}}</span>
         <i class=" icon ion-happy-outline "></i>
     </button>
-    <div ng-show="isPaused" class="buttonPausedBlock">
-        <button ng-click="stopHappiness()">OK!</button>
-        <input ng-model="hashtag" class="hashtagText" type="text">
+    <div ng-show="isPaused" class="buttonPausedBlock" >
+        <button class="buttonPausedSend" ng-class="{1: 'buttonPausedSend1',2: 'buttonPausedSend2',
+    	3: 'buttonPausedSend3',4: 'buttonPausedSend4',5: 'buttonPausedSend5'}[happinessData.level]" ng-click="stopHappiness()"></button>
+        <input placeholder="#WhatMakesYouHappy" ng-model="hashtag" class="hashtagText" type="text">
     </div>
     <div class="cancelArea" id="cancelArea" ng-click="cancelHappiness()"
          ng-drop="true" ng-drop-success="cancelHappiness($data,$event)">
